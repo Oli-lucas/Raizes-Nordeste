@@ -12,5 +12,63 @@
     <script src="js/main.js" defer></script>
   </head>
   <body>
+    <!-- Topbar (faixa de aviso) -->
+    <aside id="topbar" class="topbar">
+      <div class="topbar-container">
+        <img src="public/images/topbar-bullet.svg" alt="" class="topbar-bullet" aria-hidden="true">
+        <span class="topbar-text">Cozinha afetiva inspirada em Dona Francisca</span>
+        <span class="topbar-separator" aria-hidden="true">•</span>
+        <span class="topbar-text">Manteiga de Garrafa Pura</span>
+        <span class="topbar-separator" aria-hidden="true">•</span>
+        <span class="topbar-text">Sabor & Tradição do Sertão</span>
+        <img src="public/images/topbar-star.svg" alt="" class="topbar-star" aria-hidden="true">
+        <span class="topbar-highlight">Desde 1984</span>
+      </div>
+    </aside>
+
+    <!-- Header principal -->
+    <header id="main-header" class="main-header">
+      <div class="header-container">
+        <!-- Zona A: Logo -->
+        <a href="/" class="logo" aria-label="Página inicial">
+          <span class="logo-icon-bg">
+            <img src="public/images/logo-bg.png" alt="" class="logo-bg" aria-hidden="true">
+            <img src="public/images/logo-shadow.png" alt="" class="logo-shadow" aria-hidden="true">
+            <img src="public/images/logo-icon.svg" alt="Garfo e faca cruzados" class="logo-icon">
+          </span>
+          <span class="logo-texts">
+            <span class="logo-title">Raízes do Nordeste</span>
+            <span class="logo-subtitle"><span class="logo-decor">—</span> COZINHA & TRADIÇÃO</span>
+          </span>
+        </a>
+
+        <!-- Zona B: Navegação principal -->
+        <nav class="main-nav" aria-label="Navegação principal">
+          <ul class="nav-list">
+            <li class="nav-item nav-item-active">
+              <a href="#cardapio" class="nav-link" aria-current="page">
+                <img src="public/images/icon-book.svg" alt="" class="nav-icon" aria-hidden="true">
+                Cardápio
+              </a>
+            </li>
+            <li class="nav-item"><a href="#destaques" class="nav-link">Destaques</a></li>
+            <li class="nav-item"><a href="#nossa-raiz" class="nav-link">Nossa Raiz</a></li>
+            <li class="nav-item"><a href="#casas-mesas" class="nav-link">Casas & Mesas</a></li>
+          </ul>
+        </nav>
+
+        <!-- Zona C: Ações -->
+        <div class="header-actions">
+          <a href="#pedir" class="btn btn-primary">
+            <img src="public/images/icon-bag.svg" alt="" class="btn-icon" aria-hidden="true">
+            Pedir Agora
+          </a>
+          <a href="#reservar" class="btn btn-outline">
+            <img src="public/images/icon-table.svg" alt="" class="btn-icon" aria-hidden="true">
+            Reservar
+          </a>
+        </div>
+      </div>
+    </header>
   </body>
 </html>
