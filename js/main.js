@@ -4,7 +4,43 @@ const menuCards = [...document.querySelectorAll('.menu-card')];
 const menuStatus = document.querySelector('[data-menu-status]');
 const orderStatus = document.querySelector('[data-order-status]');
 const orderCount = document.querySelector('[data-order-count]');
+const orderSummary = document.querySelector('[data-order]');
+const orderList = document.querySelector('[data-order-list]');
 let orderItems = 0;
+const selectedOrder = new Map();
+
+const renderOrder = () => {
+	orderItems = [...selectedOrder.values()].reduce((total, quantity) => total + quantity, 0);
+	orderCount.textContent = `${orderItems} ${orderItems === 1 ? 'item' : 'itens'}`;
+	orderSummary.hidden = selectedOrder.size === 0;
+	orderList.replaceChildren();
+
+	selectedOrder.forEach((quantity, name) => {
+		const item = document.createElement('li');
+		item.className = 'menu-order-item';
+
+		const itemName = document.createElement('span');
+		itemName.className = 'menu-order-item-name';
+		itemName.textContent = name;
+
+		if (quantity > 1) {
+			const itemQuantity = document.createElement('span');
+			itemQuantity.className = 'menu-order-item-quantity';
+			itemQuantity.textContent = `× ${quantity}`;
+			itemName.append(itemQuantity);
+		}
+
+		const removeButton = document.createElement('button');
+		removeButton.className = 'menu-order-remove';
+		removeButton.type = 'button';
+		removeButton.dataset.removeFromOrder = name;
+		removeButton.setAttribute('aria-label', `Remover ${name} do pedido`);
+		removeButton.textContent = 'Remover';
+
+		item.append(itemName, removeButton);
+		orderList.append(item);
+	});
+};
 
 if (menuFilters && menuGrid && menuCards.length) {
 	const filters = [...menuFilters.querySelectorAll('[role="tab"]')];
@@ -61,9 +97,19 @@ if (menuFilters && menuGrid && menuCards.length) {
 	menuGrid.addEventListener('click', (event) => {
 		const addButton = event.target.closest('[data-add-to-order]');
 		if (!addButton) return;
-		orderItems += 1;
-		orderCount.textContent = `${orderItems} ${orderItems === 1 ? 'item' : 'itens'}`;
+		const itemName = addButton.dataset.addToOrder;
+		selectedOrder.set(itemName, (selectedOrder.get(itemName) || 0) + 1);
+		renderOrder();
 		orderStatus.textContent = `${addButton.dataset.addToOrder} adicionado ao pedido. ${orderItems} ${orderItems === 1 ? 'item' : 'itens'} no total.`;
+	});
+
+	orderList.addEventListener('click', (event) => {
+		const removeButton = event.target.closest('[data-remove-from-order]');
+		if (!removeButton) return;
+		const itemName = removeButton.dataset.removeFromOrder;
+		selectedOrder.delete(itemName);
+		renderOrder();
+		orderStatus.textContent = `${itemName} removido do pedido. ${orderItems} ${orderItems === 1 ? 'item' : 'itens'} no total.`;
 	});
 }
 

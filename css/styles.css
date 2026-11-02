@@ -534,6 +534,71 @@ body {
 .menu-add:hover { transform: translateY(-1px); background: var(--color-orange-dark); }
 .menu-add svg { width: 22px; height: 22px; }
 .menu-order-status { min-height: 1.25rem; margin: 14px 0 0; color: var(--color-orange-dark); font-size: 0.82rem; font-weight: 600; text-align: center; }
+.menu-order {
+	display: grid;
+	gap: 10px;
+	margin-top: 16px;
+	padding: 18px;
+	border: 1px solid var(--color-beige-border);
+	border-radius: var(--radius-lg);
+	background: rgba(248, 243, 238, 0.7);
+}
+.menu-order[hidden] {
+	display: none;
+}
+.menu-order-title {
+	margin: 0;
+	color: var(--color-brown-dark);
+	font-family: var(--font-serif);
+	font-size: 1.25rem;
+}
+.menu-order-list {
+	display: grid;
+	gap: 8px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.menu-order-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	padding-top: 8px;
+	border-top: 1px solid var(--color-beige-border);
+	color: var(--color-text);
+	font-size: 0.875rem;
+}
+.menu-order-item-name {
+	font-weight: 600;
+}
+.menu-order-item-quantity {
+	margin-left: 6px;
+	color: var(--color-text);
+	font-size: 0.8rem;
+	font-weight: 400;
+}
+.menu-order-remove {
+	min-width: 44px;
+	min-height: 44px;
+	padding: 8px 12px;
+	border: 1px solid var(--color-beige-border);
+	border-radius: 8px;
+	background: var(--color-beige);
+	color: var(--color-orange-dark);
+	font: inherit;
+	font-size: 0.8rem;
+	font-weight: 700;
+	cursor: pointer;
+}
+.menu-order-remove:hover {
+	border-color: var(--color-orange-dark);
+	background: #fff;
+}
+.menu-order-remove:focus-visible {
+	outline: 3px solid var(--color-orange);
+	outline-offset: 2px;
+}
 .menu-cta {
 	display: flex;
 	align-items: center;
