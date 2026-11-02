@@ -66,3 +66,40 @@ if (menuFilters && menuGrid && menuCards.length) {
 		orderStatus.textContent = `${addButton.dataset.addToOrder} adicionado ao pedido. ${orderItems} ${orderItems === 1 ? 'item' : 'itens'} no total.`;
 	});
 }
+
+const locationStatuses = [...document.querySelectorAll('[data-location-status]')];
+const weekdayNumbers = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+
+const updateLocationStatuses = () => {
+	locationStatuses.forEach((status) => {
+		const formatter = new Intl.DateTimeFormat('en-US', {
+			timeZone: status.dataset.timezone,
+			weekday: 'short',
+			hour: '2-digit',
+			minute: '2-digit',
+			hourCycle: 'h23'
+		});
+		const parts = Object.fromEntries(formatter.formatToParts(new Date()).map(({ type, value }) => [type, value]));
+		const currentDay = weekdayNumbers[parts.weekday];
+		const currentTime = Number(parts.hour) * 60 + Number(parts.minute);
+		const [opensAt, opensMinute] = status.dataset.openTime.split(':').map(Number);
+		const [closesAt, closesMinute] = status.dataset.closeTime.split(':').map(Number);
+		const openingTime = opensAt * 60 + opensMinute;
+		const closingTime = closesAt * 60 + closesMinute;
+		const isOpen = status.dataset.openDays.split(',').map(Number).includes(currentDay)
+			&& currentTime >= openingTime
+			&& currentTime < closingTime;
+		const label = status.querySelector('[data-status-text]');
+
+		status.classList.toggle('is-closed', !isOpen);
+		label.textContent = isOpen ? 'Aberto agora' : 'Fechado agora';
+	});
+};
+
+if (locationStatuses.length) {
+	updateLocationStatuses();
+	window.setInterval(updateLocationStatuses, 60_000);
+}
+
+const currentYear = document.querySelector('[data-current-year]');
+if (currentYear) currentYear.textContent = new Date().getFullYear();
