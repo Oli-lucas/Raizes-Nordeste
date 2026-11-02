@@ -119,30 +119,12 @@ body {
 	gap: 16px;
 	text-decoration: none;
 }
-.logo-icon-bg {
-	position: relative;
-	width: 44px;
-	height: 44px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: var(--radius-lg);
-	overflow: hidden;
-	background: linear-gradient(135deg, var(--color-orange) 0%, var(--color-orange-dark) 100%);
-	box-shadow: 0 2px 4px -2px var(--color-shadow-strong), 0 4px 6px -1px var(--color-shadow-strong);
-}
-.logo-bg, .logo-shadow {
-	position: absolute;
-	left: 0; top: 0;
-	width: 44px;
-	height: 44px;
-	pointer-events: none;
-}
-.logo-icon {
-	position: relative;
-	width: 20px;
-	height: 20px;
-	z-index: 1;
+.logo-image {
+	display: block;
+	flex: 0 0 56px;
+	width: 56px;
+	height: 56px;
+	object-fit: contain;
 }
 .logo-texts {
 	display: flex;
@@ -977,6 +959,11 @@ body {
 	.header-actions {
 		display: none;
 	}
+	.logo-image {
+		flex-basis: 48px;
+		width: 48px;
+		height: 48px;
+	}
 	.logo-title {
 		font-size: 1.05rem;
 	}
@@ -1125,11 +1112,10 @@ body {
 	min-height: 44px;
 	text-decoration: none;
 }
-.footer-brand .logo-icon-bg {
-	flex: 0 0 44px;
-}
-.footer-brand .logo-icon {
-	z-index: 1;
+.footer-brand .logo-image {
+	flex-basis: 52px;
+	width: 52px;
+	height: 52px;
 }
 .footer-brand .logo-title {
 	font-size: 1.5rem;
