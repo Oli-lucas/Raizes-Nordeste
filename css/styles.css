@@ -1137,18 +1137,6 @@ body {
 	.menu-card-footer { margin: auto 11px 0; padding: 9px 0 12px; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-	.menu-card, .menu-card-image img, .menu-filter, .menu-add, .menu-cta-button { transition: none; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.hero-button { transition: none; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.location-reserve { transition: none; }
-}
-
 /* =========================
 	 Footer
 ========================== */
@@ -1349,5 +1337,14 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.footer-link { transition: none; }
+	.menu-card,
+	.menu-card-image img,
+	.menu-filter,
+	.menu-add,
+	.menu-cta-button,
+	.hero-button,
+	.location-reserve,
+	.footer-link {
+		transition: none;
+	}
 }
